@@ -88,12 +88,14 @@ KpiCard.defaultProps = { subtitle: '' };
 // ── Donut chart ───────────────────────────────────────────────────────────────
 function DonutChart({ title, series, labels, colors }) {
   const options = {
-    chart: { type: 'donut', toolbar: { show: false } },
+    theme: { mode: 'dark' },
+    chart: { type: 'donut', background: 'transparent', toolbar: { show: false } },
     labels,
     colors,
-    legend: { position: 'bottom', fontSize: '12px' },
+    legend: { position: 'bottom', fontSize: '12px', labels: { colors: '#94A3B8' } },
     dataLabels: { enabled: true, formatter: (v) => `${v.toFixed(1)}%` },
-    plotOptions: { pie: { donut: { size: '62%' } } },
+    plotOptions: { pie: { donut: { size: '65%' } } },
+    stroke: { show: false },
     tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
   };
   return (
@@ -125,13 +127,15 @@ function TrendChart({ trend }) {
   const values = trend.map((r) => Number(r.amount_balance));
 
   const options = {
-    chart: { type: 'area', toolbar: { show: false }, zoom: { enabled: false } },
-    stroke: { curve: 'smooth', width: 2 },
-    fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
-    xaxis: { categories: dates, labels: { rotate: -30, style: { fontSize: '11px' } } },
-    yaxis: { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K` } },
-    colors: [CC.primary],
-    tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
+    theme: { mode: 'dark' },
+    chart: { type: 'area', background: 'transparent', toolbar: { show: false }, zoom: { enabled: false } },
+    stroke: { curve: 'smooth', width: 3 },
+    fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.0, stops: [0, 100] } },
+    xaxis: { categories: dates, labels: { rotate: -30, style: { fontSize: '11px', colors: '#94A3B8' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K`, style: { colors: '#94A3B8' } } },
+    colors: ['#3B82F6'], // Electric Blue
+    grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
+    tooltip: { theme: 'dark', y: { formatter: (v) => `UGX ${fmt(v)}` } },
     dataLabels: { enabled: false },
   };
 
@@ -205,8 +209,8 @@ export default function Dashboard({ token }) {
   const expSeries = (data?.expenseBreakdown ?? []).map((r) => Number(r.total));
   const expLabels = (data?.expenseBreakdown ?? []).map((r) => r.name ?? r.type_name ?? '?');
 
-  const INCOME_COLORS = ['#1E3A8A', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'];
-  const EXPENSE_COLORS = ['#C62828', '#10B981', '#4A148C', '#880E4F', '#BF360C'];
+  const INCOME_COLORS = ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#F43F5E'];
+  const EXPENSE_COLORS = ['#F43F5E', '#F59E0B', '#8B5CF6', '#10B981', '#3B82F6'];
 
   return (
     <Box>
@@ -224,10 +228,10 @@ export default function Dashboard({ token }) {
             <ToggleButton value="custom" sx={{ textTransform: 'none', fontSize: 12 }}>Custom</ToggleButton>
           </ToggleButtonGroup>
           {period === 'custom' && (
-            <>
-              <TextField type="date" size="small" label="From" value={from} onChange={(e) => setFrom(e.target.value)} slotProps={{ inputLabel: { shrink: true } }} sx={{ width: 150 }} />
-              <TextField type="date" size="small" label="To" value={to} onChange={(e) => setTo(e.target.value)} slotProps={{ inputLabel: { shrink: true } }} sx={{ width: 150 }} />
-            </>
+            <Stack direction="row" spacing={1}>
+              <TextField type="date" size="small" label="From" value={from} onChange={(e) => setFrom(e.target.value)} slotProps={{ inputLabel: { shrink: true } }} sx={{ width: 140 }} />
+              <TextField type="date" size="small" label="To" value={to} onChange={(e) => setTo(e.target.value)} slotProps={{ inputLabel: { shrink: true } }} sx={{ width: 140 }} />
+            </Stack>
           )}
         </Stack>
       </Stack>

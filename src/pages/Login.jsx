@@ -66,7 +66,9 @@ export default function Login({ onLogin }) {
         justifyContent: 'center',
         alignItems: 'center',
         width: '42%',
-        background: `linear-gradient(160deg, ${CC.primary} 0%, ${CC.primaryDark} 100%)`,
+        background: 'rgba(11, 15, 25, 0.4)',
+        backdropFilter: 'blur(20px)',
+        borderRight: '1px solid rgba(255, 255, 255, 0.05)',
         p: 6,
       }}>
         {/* Logo */}
@@ -99,7 +101,7 @@ export default function Login({ onLogin }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: '#F5F7FA',
+        bgcolor: 'transparent',
         p: { xs: 3, sm: 6 },
       }}>
         <Paper elevation={3} sx={{ width: '100%', maxWidth: 420, borderRadius: 3, p: { xs: 3, sm: 4 } }}>
@@ -112,7 +114,7 @@ export default function Login({ onLogin }) {
 
           {/* Header */}
           <Stack direction="row" spacing={1.5} alignItems="center" mb={1}>
-            <Box sx={{ p: 1, bgcolor: CC.primaryLight, borderRadius: 2 }}>
+            <Box sx={{ p: 1, bgcolor: 'rgba(59, 130, 246, 0.15)', borderRadius: 2 }}>
               <LockIcon sx={{ color: CC.primary, fontSize: 22 }} />
             </Box>
             <Box>
@@ -140,7 +142,7 @@ export default function Login({ onLogin }) {
                 sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <Button type="submit" variant="contained" fullWidth size="large" disabled={loading}
-                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none', bgcolor: CC.primary, '&:hover': { bgcolor: CC.primaryDark } }}>
+                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none' }}>
                 {loading ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Sign In'}
               </Button>
             </Stack>

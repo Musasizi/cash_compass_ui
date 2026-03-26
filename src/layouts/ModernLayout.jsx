@@ -80,7 +80,7 @@ export default function ModernLayout({ children, user, onLogout }) {
 
   // ── Sidebar contents ────────────────────────────────────────────────────────
   const drawer = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: CC.primary, color: CC.white }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: 'rgba(11, 15, 25, 0.4)', backdropFilter: 'blur(20px)', color: CC.white }}>
 
       {/* Brand header */}
       <Box sx={{ px: 2.5, pt: 3, pb: 2 }}>
@@ -113,7 +113,7 @@ export default function ModernLayout({ children, user, onLogout }) {
                 px: 1.5,
                 py: 1,
                 color: active ? CC.accent : 'rgba(255,255,255,0.75)',
-                bgcolor: active ? 'rgba(240,165,0,0.15)' : 'transparent',
+                bgcolor: active ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
                 borderLeft: active ? `3px solid ${CC.accent}` : '3px solid transparent',
                 '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', color: CC.white },
                 transition: 'all 0.18s ease',
@@ -160,7 +160,7 @@ export default function ModernLayout({ children, user, onLogout }) {
 
   // ── Full layout shell ───────────────────────────────────────────────────────
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: CC.offWhite }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'transparent' }}>
 
       {/* Permanent sidebar */}
       <Drawer
@@ -168,7 +168,7 @@ export default function ModernLayout({ children, user, onLogout }) {
         sx={{
           width: DRAWER_WIDTH,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box', border: 'none', boxShadow: '4px 0 20px rgba(0,0,0,0.12)' },
+          '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box', borderRight: '1px solid rgba(255,255,255,0.05)', bgcolor: 'transparent' },
         }}
       >
         {drawer}
@@ -178,13 +178,13 @@ export default function ModernLayout({ children, user, onLogout }) {
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
         {/* Top AppBar */}
-        <AppBar position="static" elevation={0} sx={{ bgcolor: CC.white, borderBottom: `3px solid ${CC.primary}`, color: 'text.primary' }}>
+        <AppBar position="static" elevation={0} sx={{ bgcolor: 'rgba(11, 15, 25, 0.4)', backdropFilter: 'blur(12px)', borderBottom: `1px solid rgba(255,255,255,0.05)`, color: 'text.primary' }}>
           <Toolbar sx={{ minHeight: 56 }}>
-            <Breadcrumbs separator={<NavigateNextIcon fontSize="small" sx={{ color: CC.primary }} />} sx={{ flexGrow: 1 }}>
-              <Link underline="hover" onClick={() => navigate('/dashboard')} sx={{ cursor: 'pointer', fontSize: 13, color: CC.primary, fontWeight: 600 }}>
+            <Breadcrumbs separator={<NavigateNextIcon fontSize="small" sx={{ color: CC.primaryLight }} />} sx={{ flexGrow: 1 }}>
+              <Link underline="hover" onClick={() => navigate('/dashboard')} sx={{ cursor: 'pointer', fontSize: 13, color: 'text.secondary', fontWeight: 600 }}>
                 Home
               </Link>
-              <Typography sx={{ fontSize: 13, fontWeight: 700, color: CC.primary }}>
+              <Typography sx={{ fontSize: 13, fontWeight: 700, color: 'text.primary' }}>
                 {pageLabel}
               </Typography>
             </Breadcrumbs>
@@ -194,7 +194,7 @@ export default function ModernLayout({ children, user, onLogout }) {
               label={username}
               size="small"
               variant="outlined"
-              sx={{ borderColor: CC.primary, color: CC.primary, fontWeight: 600, fontSize: 12 }}
+              sx={{ borderColor: 'rgba(255,255,255,0.2)', color: 'text.primary', fontWeight: 600, fontSize: 12 }}
             />
           </Toolbar>
         </AppBar>
@@ -205,7 +205,7 @@ export default function ModernLayout({ children, user, onLogout }) {
         </Box>
 
         {/* Footer */}
-        <Box sx={{ textAlign: 'center', py: 1.5, borderTop: '1px solid rgba(13,110,110,0.12)', color: CC.primary, fontSize: 11, fontWeight: 500, opacity: 0.7 }}>
+        <Box sx={{ textAlign: 'center', py: 1.5, borderTop: '1px solid rgba(255,255,255,0.05)', color: 'text.secondary', fontSize: 11, fontWeight: 500 }}>
           © {new Date().getFullYear()} CashCompass — Personal Finance Tracker
         </Box>
       </Box>

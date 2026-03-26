@@ -1,17 +1,12 @@
-/* ── Global Base Styles ─────────────────────────────────────────────────────
-   MUI's CssBaseline handles most resets. These rules apply to the outermost
-   shell — the #root div and the document body.
-   UCU colours are defined in main.jsx via createTheme() and do NOT live here.
-────────────────────────────────────────────────────────────────────────────── */
+/* ── Global Base Styles - Cash Compass Modern Dark ─────────────────────── */
 :root {
-  font-family: "Inter", "Roboto", system-ui, Arial, sans-serif;
+  font-family: "Inter", "Outfit", "Roboto", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  /* Force light-mode only — no dark-mode flicker */
-  color-scheme: light;
-  color: #1a1a1a;
-  background-color: #f9f5f0; /* warm cream — matches MUI background.default */
+  color-scheme: dark;
+  color: #F8FAFC;         /* slate-50 */
+  background-color: #0B0F19; /* deep space dark slate */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,14 +14,37 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove Vite's default body centering so MUI layout fills the viewport */
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #f9f5f0;
+  background-color: #0B0F19;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-/* The React mount point should fill the full height */
 #root {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
