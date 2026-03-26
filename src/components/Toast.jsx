@@ -1,5 +1,5 @@
 /**
- * components/Toast.jsx — WalletWise Toast Notification
+ * components/Toast.jsx — CashCompass Toast Notification
  *
  * Props:
  *   toast   – { open, message, severity, title? } — from useToast()

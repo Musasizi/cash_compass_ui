@@ -20,7 +20,7 @@ import ReactApexChart from 'react-apexcharts';
 import { getLiveBalance, getBalanceTrend } from '../utils/api';
 
 // ── Palette ───────────────────────────────────────────────────────────────────
-const WW = { teal: '#0D6E6E', green: '#2E7D32', red: '#C62828' };
+const CC = { primary: '#1E3A8A', green: '#2E7D32', red: '#C62828' };
 
 const fmt = (n) =>
     Number(n ?? 0).toLocaleString('en-UG', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -79,7 +79,7 @@ export default function Balance({ token }) {
         fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
         xaxis: { categories: dates, labels: { rotate: -30, style: { fontSize: '11px' } } },
         yaxis: { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K` } },
-        colors: [WW.teal],
+        colors: [CC.primary],
         tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
         dataLabels: { enabled: false },
     };
@@ -87,7 +87,7 @@ export default function Balance({ token }) {
     if (loading) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}>
-                <CircularProgress sx={{ color: WW.teal }} />
+                <CircularProgress sx={{ color: CC.primary }} />
             </Box>
         );
     }
@@ -96,14 +96,14 @@ export default function Balance({ token }) {
 
     return (
         <Box>
-            <Typography variant="h5" fontWeight={800} color={WW.teal} mb={0.5}>Balance</Typography>
+            <Typography variant="h5" fontWeight={800} color={CC.primary} mb={0.5}>Balance</Typography>
             <Typography variant="body2" color="text.secondary" mb={3}>Live and historical balance overview</Typography>
 
             {/* KPI row */}
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mb={4}>
-                <Kpi icon={<AccountBalanceWalletIcon sx={{ color: WW.teal }} />} label="Live Balance" value={fmt(bal.amount_balance)} color={WW.teal} />
-                <Kpi icon={<ArrowUpwardIcon sx={{ color: WW.green }} />} label="Total Income" value={fmt(bal.total_income)} color={WW.green} />
-                <Kpi icon={<ArrowDownwardIcon sx={{ color: WW.red }} />} label="Total Expense" value={fmt(bal.total_expense)} color={WW.red} />
+                <Kpi icon={<AccountBalanceWalletIcon sx={{ color: CC.primary }} />} label="Live Balance" value={fmt(bal.amount_balance)} color={CC.primary} />
+                <Kpi icon={<ArrowUpwardIcon sx={{ color: CC.green }} />} label="Total Income" value={fmt(bal.total_income)} color={CC.green} />
+                <Kpi icon={<ArrowDownwardIcon sx={{ color: CC.red }} />} label="Total Expense" value={fmt(bal.total_expense)} color={CC.red} />
             </Stack>
 
             {/* Trend chart */}
@@ -127,7 +127,7 @@ export default function Balance({ token }) {
                 <Divider />
                 <TableContainer>
                     <Table size="small">
-                        <TableHead sx={{ bgcolor: WW.teal }}>
+                        <TableHead sx={{ bgcolor: CC.primary }}>
                             <TableRow>
                                 {['Date', 'Type', 'Balance (UGX)', 'Income (UGX)', 'Expense (UGX)'].map((h) => (
                                     <TableCell key={h} sx={{ color: '#fff', fontWeight: 700 }}>{h}</TableCell>
@@ -144,11 +144,11 @@ export default function Balance({ token }) {
                                     <TableCell>{r.date_created?.slice(0, 10)}</TableCell>
                                     <TableCell>
                                         <Chip label={r.snapshot_type} size="small"
-                                            sx={{ bgcolor: r.snapshot_type === 'live' ? '#E0F2F1' : '#E8EAF6', color: r.snapshot_type === 'live' ? WW.teal : '#3949AB', fontWeight: 700, fontSize: 11 }} />
+                                            sx={{ bgcolor: r.snapshot_type === 'live' ? '#DBEAFE' : '#E8EAF6', color: r.snapshot_type === 'live' ? CC.primary : '#3949AB', fontWeight: 700, fontSize: 11 }} />
                                     </TableCell>
                                     <TableCell sx={{ fontWeight: 700 }}>UGX {fmt(r.amount_balance)}</TableCell>
-                                    <TableCell sx={{ color: WW.green }}>UGX {fmt(r.total_income)}</TableCell>
-                                    <TableCell sx={{ color: WW.red }}>UGX {fmt(r.total_expense)}</TableCell>
+                                    <TableCell sx={{ color: CC.green }}>UGX {fmt(r.total_income)}</TableCell>
+                                    <TableCell sx={{ color: CC.red }}>UGX {fmt(r.total_expense)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

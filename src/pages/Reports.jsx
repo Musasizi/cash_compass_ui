@@ -1,5 +1,5 @@
 /**
- * pages/Reports.jsx — WalletWise Finance Analytics
+ * pages/Reports.jsx — CashCompass Finance Analytics
  *
  * Shows:
  *  • Income vs Expense grouped bar chart (monthly)
@@ -18,7 +18,7 @@ import ReactApexChart from 'react-apexcharts';
 import { getDashboard } from '../utils/api';
 
 // ── Palette ───────────────────────────────────────────────────────────────────
-const WW = { teal: '#0D6E6E', green: '#2E7D32', red: '#C62828' };
+const CC = { primary: '#1E3A8A', green: '#2E7D32', red: '#C62828' };
 
 const fmt = (n) =>
   Number(n ?? 0).toLocaleString('en-UG', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -72,7 +72,7 @@ export default function Reports({ token }) {
 
   const barOptions = {
     chart:   { type: 'bar', toolbar: { show: false } },
-    colors:  [WW.green, WW.red],
+    colors:  [CC.green, CC.red],
     xaxis:   { categories: barCategories },
     yaxis:   { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K` } },
     tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
@@ -102,7 +102,7 @@ export default function Reports({ token }) {
       {/* Header + Date Filter */}
       <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ sm: 'center' }} mb={3} spacing={2}>
         <Box>
-          <Typography variant="h5" fontWeight={800} color={WW.teal}>Reports</Typography>
+          <Typography variant="h5" fontWeight={800} color={CC.primary}>Reports</Typography>
           <Typography variant="body2" color="text.secondary">Finance analytics overview</Typography>
         </Box>
         <Stack direction="row" spacing={1.5} alignItems="center">
@@ -113,12 +113,12 @@ export default function Reports({ token }) {
             onChange={(e) => setTo(e.target.value)}
             slotProps={{ inputLabel: { shrink: true } }} sx={{ width: 150 }} />
           <Button variant="outlined" size="small" onClick={load}
-            sx={{ borderColor: WW.teal, color: WW.teal, textTransform: 'none' }}>Apply</Button>
+            sx={{ borderColor: CC.primary, color: CC.primary, textTransform: 'none' }}>Apply</Button>
         </Stack>
       </Stack>
 
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}><CircularProgress sx={{ color: WW.teal }} /></Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}><CircularProgress sx={{ color: CC.primary }} /></Box>
       ) : (
         <Grid container spacing={3}>
 
@@ -129,7 +129,7 @@ export default function Reports({ token }) {
               <Divider />
               <TableContainer>
                 <Table size="small">
-                  <TableHead sx={{ bgcolor: WW.teal }}>
+                  <TableHead sx={{ bgcolor: CC.primary }}>
                     <TableRow>
                       {['Metric', 'Value'].map((h) => (
                         <TableCell key={h} sx={{ color: '#fff', fontWeight: 700 }}>{h}</TableCell>
@@ -138,10 +138,10 @@ export default function Reports({ token }) {
                   </TableHead>
                   <TableBody>
                     {[
-                      ['Total Income',   fmt(totalIncome),  WW.green],
-                      ['Total Expense',  fmt(totalExpense), WW.red],
-                      ['Net Balance',    fmt(netBalance),   netBalance >= 0 ? WW.green : WW.red],
-                      ['Live Balance',   fmt(balance.amount_balance), WW.teal],
+                      ['Total Income',   fmt(totalIncome),  CC.green],
+                      ['Total Expense',  fmt(totalExpense), CC.red],
+                      ['Net Balance',    fmt(netBalance),   netBalance >= 0 ? CC.green : CC.red],
+                      ['Live Balance',   fmt(balance.amount_balance), CC.primary],
                     ].map(([label, value, color]) => (
                       <TableRow key={label} hover>
                         <TableCell sx={{ fontWeight: 600 }}>{label}</TableCell>
@@ -182,7 +182,7 @@ export default function Reports({ token }) {
               <CardContent>
                 {iSeries.length > 0 ? (
                   <ReactApexChart type="donut" series={iSeries}
-                    options={donutOpts(iLabels, ['#0D6E6E', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'])}
+                    options={donutOpts(iLabels, ['#1E3A8A', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'])}
                     height={260} />
                 ) : (
                   <Typography variant="body2" color="text.secondary" textAlign="center" py={5}>No data</Typography>
@@ -198,7 +198,7 @@ export default function Reports({ token }) {
               <CardContent>
                 {eSeries.length > 0 ? (
                   <ReactApexChart type="donut" series={eSeries}
-                    options={donutOpts(eLabels, ['#C62828', '#F0A500', '#4A148C', '#880E4F', '#BF360C'])}
+                    options={donutOpts(eLabels, ['#C62828', '#10B981', '#4A148C', '#880E4F', '#BF360C'])}
                     height={260} />
                 ) : (
                   <Typography variant="body2" color="text.secondary" textAlign="center" py={5}>No data</Typography>

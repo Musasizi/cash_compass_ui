@@ -26,7 +26,7 @@ import { useToast } from '../hooks/useToast';
 import Toast from '../components/Toast';
 
 // ── Palette ───────────────────────────────────────────────────────────────────
-const WW = { teal: '#0D6E6E', red: '#C62828', amber: '#F0A500' };
+const CC = { primary: '#1E3A8A', red: '#C62828', amber: '#10B981' };
 
 const fmt = (n) =>
     Number(n ?? 0).toLocaleString('en-UG', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -141,11 +141,11 @@ export default function Expense({ token }) {
             {/* Header */}
             <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ sm: 'center' }} mb={3} spacing={2}>
                 <Box>
-                    <Typography variant="h5" fontWeight={800} color={WW.teal}>Expenses</Typography>
+                    <Typography variant="h5" fontWeight={800} color={CC.primary}>Expenses</Typography>
                     <Typography variant="body2" color="text.secondary">Track all expenditures</Typography>
                 </Box>
                 <Button variant="contained" startIcon={<AddIcon />} onClick={openCreate}
-                    sx={{ bgcolor: WW.red, '&:hover': { bgcolor: '#962020' }, borderRadius: 2, textTransform: 'none', fontWeight: 700 }}>
+                    sx={{ bgcolor: CC.red, '&:hover': { bgcolor: '#962020' }, borderRadius: 2, textTransform: 'none', fontWeight: 700 }}>
                     Add Expense
                 </Button>
             </Stack>
@@ -168,7 +168,7 @@ export default function Expense({ token }) {
                             onChange={(e) => setFilterTo(e.target.value)}
                             slotProps={{ inputLabel: { shrink: true } }} />
                         <Button variant="outlined" size="small" onClick={load}
-                            sx={{ borderColor: WW.teal, color: WW.teal, textTransform: 'none' }}>
+                            sx={{ borderColor: CC.primary, color: CC.primary, textTransform: 'none' }}>
                             Apply
                         </Button>
                         <Button size="small" onClick={() => { setFilterType(''); setFilterFrom(''); setFilterTo(''); }}
@@ -181,11 +181,11 @@ export default function Expense({ token }) {
 
             {/* Table */}
             {loading ? (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}><CircularProgress sx={{ color: WW.teal }} /></Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}><CircularProgress sx={{ color: CC.primary }} /></Box>
             ) : (
                 <TableContainer component={Paper} elevation={2} sx={{ borderRadius: 3 }}>
                     <Table size="small">
-                        <TableHead sx={{ bgcolor: WW.red }}>
+                        <TableHead sx={{ bgcolor: CC.red }}>
                             <TableRow>
                                 {['#', 'Date', 'Description', 'Type', 'Budgeted', 'Spent', 'Actions'].map((h) => (
                                     <TableCell key={h} sx={{ color: '#fff', fontWeight: 700, py: 1.5 }}>{h}</TableCell>
@@ -205,13 +205,13 @@ export default function Expense({ token }) {
                                     <TableCell>
                                         <Chip label={typeName(row.id_expense)} size="small"
                                             icon={<ArrowDownwardIcon sx={{ fontSize: 12 }} />}
-                                            sx={{ bgcolor: '#FFEBEE', color: WW.red, fontWeight: 700, fontSize: 11 }} />
+                                            sx={{ bgcolor: '#FFEBEE', color: CC.red, fontWeight: 700, fontSize: 11 }} />
                                     </TableCell>
                                     <TableCell>UGX {fmt(row.amount)}</TableCell>
-                                    <TableCell sx={{ fontWeight: 700, color: WW.red }}>UGX {fmt(row.amount_expenditure)}</TableCell>
+                                    <TableCell sx={{ fontWeight: 700, color: CC.red }}>UGX {fmt(row.amount_expenditure)}</TableCell>
                                     <TableCell>
-                                        <Tooltip title="Edit"><IconButton size="small" onClick={() => openEdit(row)}><EditIcon fontSize="small" sx={{ color: WW.teal }} /></IconButton></Tooltip>
-                                        <Tooltip title="Delete"><IconButton size="small" onClick={() => setDelId(row.id)}><DeleteIcon fontSize="small" sx={{ color: WW.red }} /></IconButton></Tooltip>
+                                        <Tooltip title="Edit"><IconButton size="small" onClick={() => openEdit(row)}><EditIcon fontSize="small" sx={{ color: CC.primary }} /></IconButton></Tooltip>
+                                        <Tooltip title="Delete"><IconButton size="small" onClick={() => setDelId(row.id)}><DeleteIcon fontSize="small" sx={{ color: CC.red }} /></IconButton></Tooltip>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -222,7 +222,7 @@ export default function Expense({ token }) {
 
             {/* Add / Edit dialog */}
             <Dialog open={open} onClose={() => setOpen(false)} maxWidth="xs" fullWidth>
-                <DialogTitle sx={{ fontWeight: 800, color: WW.teal }}>
+                <DialogTitle sx={{ fontWeight: 800, color: CC.primary }}>
                     {editing ? 'Edit Expense' : 'Add Expense'}
                 </DialogTitle>
                 <Divider />
@@ -260,7 +260,7 @@ export default function Expense({ token }) {
                 <DialogActions sx={{ px: 3, pb: 2 }}>
                     <Button onClick={() => setOpen(false)} sx={{ textTransform: 'none' }}>Cancel</Button>
                     <Button variant="contained" onClick={handleSave} disabled={saving}
-                        sx={{ bgcolor: WW.red, '&:hover': { bgcolor: '#962020' }, textTransform: 'none', fontWeight: 700 }}>
+                        sx={{ bgcolor: CC.red, '&:hover': { bgcolor: '#962020' }, textTransform: 'none', fontWeight: 700 }}>
                         {saving ? <CircularProgress size={18} color="inherit" /> : getBtnLabel(editing)}
                     </Button>
                 </DialogActions>

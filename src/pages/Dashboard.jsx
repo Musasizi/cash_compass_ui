@@ -1,5 +1,5 @@
 /**
- * pages/Dashboard.jsx — WalletWise Finance Dashboard
+ * pages/Dashboard.jsx — CashCompass Finance Dashboard
  *
  * Shows:
  *  • Live balance KPI card
@@ -24,11 +24,11 @@ import ReactApexChart from 'react-apexcharts';
 import { getDashboard, getBalanceTrend } from '../utils/api';
 
 // ── Theme palette ─────────────────────────────────────────────────────────────
-const WW = {
-  teal: '#0D6E6E',
+const CC = {
+  primary: '#1E3A8A',
   green: '#2E7D32',
   red: '#C62828',
-  accent: '#F0A500',
+  accent: '#10B981',
   offWhite: '#F4F6F8',
   card: '#FFFFFF',
 };
@@ -130,7 +130,7 @@ function TrendChart({ trend }) {
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
     xaxis: { categories: dates, labels: { rotate: -30, style: { fontSize: '11px' } } },
     yaxis: { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K` } },
-    colors: [WW.teal],
+    colors: [CC.primary],
     tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
     dataLabels: { enabled: false },
   };
@@ -139,7 +139,7 @@ function TrendChart({ trend }) {
     <Card elevation={2} sx={{ borderRadius: 3 }}>
       <CardHeader
         title={<Typography variant="subtitle1" fontWeight={700}>Balance Trend</Typography>}
-        avatar={<TrendingUpIcon sx={{ color: WW.teal }} />}
+        avatar={<TrendingUpIcon sx={{ color: CC.primary }} />}
       />
       <Divider />
       <CardContent>
@@ -205,15 +205,15 @@ export default function Dashboard({ token }) {
   const expSeries = (data?.expenseBreakdown ?? []).map((r) => Number(r.total));
   const expLabels = (data?.expenseBreakdown ?? []).map((r) => r.name ?? r.type_name ?? '?');
 
-  const INCOME_COLORS = ['#0D6E6E', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'];
-  const EXPENSE_COLORS = ['#C62828', '#F0A500', '#4A148C', '#880E4F', '#BF360C'];
+  const INCOME_COLORS = ['#1E3A8A', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'];
+  const EXPENSE_COLORS = ['#C62828', '#10B981', '#4A148C', '#880E4F', '#BF360C'];
 
   return (
     <Box>
       {/* Page header + filters */}
       <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ sm: 'center' }} justifyContent="space-between" mb={3} spacing={2}>
         <Box>
-          <Typography variant="h5" fontWeight={800} color={WW.teal}>Dashboard</Typography>
+          <Typography variant="h5" fontWeight={800} color={CC.primary}>Dashboard</Typography>
           <Typography variant="body2" color="text.secondary">Your financial overview</Typography>
         </Box>
 
@@ -234,35 +234,35 @@ export default function Dashboard({ token }) {
 
       {loading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}>
-          <CircularProgress sx={{ color: WW.teal }} />
+          <CircularProgress sx={{ color: CC.primary }} />
         </Box>
       ) : (
         <Grid container spacing={3}>
           {/* KPI cards */}
           <Grid item xs={12} sm={4}>
             <KpiCard
-              icon={<AccountBalanceWalletIcon sx={{ color: WW.teal }} />}
+              icon={<AccountBalanceWalletIcon sx={{ color: CC.primary }} />}
               label="Live Balance"
               value={fmt(balance.amount_balance)}
-              color={WW.teal}
+              color={CC.primary}
               subtitle="income − expenditure"
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <KpiCard
-              icon={<ArrowUpwardIcon sx={{ color: WW.green }} />}
+              icon={<ArrowUpwardIcon sx={{ color: CC.green }} />}
               label="Total Income"
               value={fmt(data?.totalIncome ?? balance.total_income)}
-              color={WW.green}
+              color={CC.green}
               subtitle={`${from} → ${to}`}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <KpiCard
-              icon={<ArrowDownwardIcon sx={{ color: WW.red }} />}
+              icon={<ArrowDownwardIcon sx={{ color: CC.red }} />}
               label="Total Expenditure"
               value={fmt(data?.totalExpense ?? balance.total_expense)}
-              color={WW.red}
+              color={CC.red}
               subtitle={`${from} → ${to}`}
             />
           </Grid>

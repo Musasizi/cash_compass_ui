@@ -1,8 +1,8 @@
 /**
- * pages/Register.jsx — WalletWise Registration Page
+ * pages/Register.jsx — CashCompass Registration Page
  *
  * Split-screen matching Login branding:
- *   Left  → WalletWise teal branding panel
+ *   Left  → CashCompass branding panel
  *   Right → Registration form (username, email, password, confirm)
  */
 import { useState } from 'react';
@@ -19,13 +19,13 @@ import { useToast } from '../hooks/useToast';
 import Toast from '../components/Toast';
 import { register } from '../utils/api';
 
-// ── WalletWise palette ────────────────────────────────────────────────────────
-const WW = {
-  teal:      '#0D6E6E',
-  tealDark:  '#094E4E',
-  tealLight: '#E0F2F1',
-  accent:    '#F0A500',
-  white:     '#FFFFFF',
+// ── CashCompass palette ────────────────────────────────────────────────────────
+const CC = {
+  primary:      '#1E3A8A', // Navy Blue
+  primaryDark:  '#111827', // Dark
+  primaryLight: '#DBEAFE', // Light Blue
+  accent:       '#10B981', // Emerald Green
+  white:        '#FFFFFF',
 };
 
 const BULLETS = [
@@ -55,7 +55,7 @@ export default function Register() {
     setLoading(true);
     try {
       await register(form.username, form.email, form.password);
-      showToast('Account created! Redirecting to login…', 'success', 'Welcome to WalletWise!');
+      showToast('Account created! Redirecting to login…', 'success', 'Welcome to CashCompass!');
       setTimeout(() => navigate('/login'), 1800);
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.');
@@ -75,17 +75,17 @@ export default function Register() {
         justifyContent: 'center',
         alignItems: 'center',
         width: '42%',
-        background: `linear-gradient(160deg, ${WW.teal} 0%, ${WW.tealDark} 100%)`,
+        background: `linear-gradient(160deg, ${CC.primary} 0%, ${CC.primaryDark} 100%)`,
         p: 6,
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
-          <AccountBalanceWalletIcon sx={{ color: WW.accent, fontSize: 52 }} />
-          <Typography variant="h3" fontWeight={900} sx={{ color: WW.white, letterSpacing: -1 }}>
-            WalletWise
+          <AccountBalanceWalletIcon sx={{ color: CC.accent, fontSize: 52 }} />
+          <Typography variant="h3" fontWeight={900} sx={{ color: CC.white, letterSpacing: -1 }}>
+            CashCompass
           </Typography>
         </Box>
 
-        <Box sx={{ width: 60, height: 3, bgcolor: WW.accent, borderRadius: 2, mb: 3 }} />
+        <Box sx={{ width: 60, height: 3, bgcolor: CC.accent, borderRadius: 2, mb: 3 }} />
 
         <Typography variant="h6" sx={{ color: 'rgba(255,255,255,0.85)', textAlign: 'center', mb: 4, lineHeight: 1.6 }}>
           Join thousands managing their<br />finances the smart way.
@@ -94,7 +94,7 @@ export default function Register() {
         <Stack spacing={1.5} sx={{ width: '100%', maxWidth: 300 }}>
           {BULLETS.map((b) => (
             <Stack key={b} direction="row" spacing={1.5} alignItems="center">
-              <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: WW.accent, flexShrink: 0 }} />
+              <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: CC.accent, flexShrink: 0 }} />
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)' }}>{b}</Typography>
             </Stack>
           ))}
@@ -114,18 +114,18 @@ export default function Register() {
 
           {/* Mobile logo */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1, mb: 3 }}>
-            <AccountBalanceWalletIcon sx={{ color: WW.teal, fontSize: 30 }} />
-            <Typography variant="h6" fontWeight={800} color={WW.teal}>WalletWise</Typography>
+            <AccountBalanceWalletIcon sx={{ color: CC.primary, fontSize: 30 }} />
+            <Typography variant="h6" fontWeight={800} color={CC.primary}>CashCompass</Typography>
           </Box>
 
           {/* Header */}
           <Stack direction="row" spacing={1.5} alignItems="center" mb={1}>
-            <Box sx={{ p: 1, bgcolor: WW.tealLight, borderRadius: 2 }}>
-              <LockIcon sx={{ color: WW.teal, fontSize: 22 }} />
+            <Box sx={{ p: 1, bgcolor: CC.primaryLight, borderRadius: 2 }}>
+              <LockIcon sx={{ color: CC.primary, fontSize: 22 }} />
             </Box>
             <Box>
-              <Typography variant="h5" fontWeight={800} color={WW.teal}>Create Account</Typography>
-              <Typography variant="caption" color="text.secondary">Start your WalletWise journey</Typography>
+              <Typography variant="h5" fontWeight={800} color={CC.primary}>Create Account</Typography>
+              <Typography variant="caption" color="text.secondary">Start your CashCompass journey</Typography>
             </Box>
           </Stack>
 
@@ -138,29 +138,29 @@ export default function Register() {
               <TextField
                 name="username" label="Username" fullWidth size="small"
                 value={form.username} onChange={handleChange} required autoFocus
-                slotProps={{ input: { startAdornment: <PersonIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <PersonIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <TextField
                 name="email" label="Email" type="email" fullWidth size="small"
                 value={form.email} onChange={handleChange} required
-                slotProps={{ input: { startAdornment: <EmailIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <EmailIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <TextField
                 name="password" label="Password" type="password" fullWidth size="small"
                 value={form.password} onChange={handleChange} required
-                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <TextField
                 name="confirm" label="Confirm Password" type="password" fullWidth size="small"
                 value={form.confirm} onChange={handleChange} required
-                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <Button type="submit" variant="contained" fullWidth size="large" disabled={loading}
-                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none', bgcolor: WW.teal, '&:hover': { bgcolor: WW.tealDark } }}>
+                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none', bgcolor: CC.primary, '&:hover': { bgcolor: CC.primaryDark } }}>
                 {loading ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Create Account'}
               </Button>
             </Stack>
@@ -169,7 +169,7 @@ export default function Register() {
           <Typography variant="body2" textAlign="center" mt={3} color="text.secondary">
             Already have an account?{' '}
             <RouterLink to="/login"
-              style={{ color: WW.teal, fontWeight: 700, textDecoration: 'none' }}>
+              style={{ color: CC.primary, fontWeight: 700, textDecoration: 'none' }}>
               Sign in
             </RouterLink>
           </Typography>

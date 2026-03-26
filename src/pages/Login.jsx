@@ -1,8 +1,8 @@
 /**
- * pages/Login.jsx — WalletWise Login Page
+ * pages/Login.jsx — CashCompass Login Page
  *
  * Split-screen:
- *   Left  → WalletWise branding (teal gradient, tagline, feature bullets)
+ *   Left  → CashCompass branding (teal gradient, tagline, feature bullets)
  *   Right → Login form (username, password)
  */
 import { useState } from 'react';
@@ -17,12 +17,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { login } from '../utils/api';
 
-// ── WalletWise palette ────────────────────────────────────────────────────────
-const WW = {
-  teal:      '#0D6E6E',
-  tealDark:  '#094E4E',
-  tealLight: '#E0F2F1',
-  accent:    '#F0A500',
+// ── CashCompass palette ────────────────────────────────────────────────────────
+const CC = {
+  primary:      '#1E3A8A',
+  primaryDark:  '#111827',
+  primaryLight: '#DBEAFE',
+  accent:    '#10B981',
   white:     '#FFFFFF',
 };
 
@@ -66,18 +66,18 @@ export default function Login({ onLogin }) {
         justifyContent: 'center',
         alignItems: 'center',
         width: '42%',
-        background: `linear-gradient(160deg, ${WW.teal} 0%, ${WW.tealDark} 100%)`,
+        background: `linear-gradient(160deg, ${CC.primary} 0%, ${CC.primaryDark} 100%)`,
         p: 6,
       }}>
         {/* Logo */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
-          <AccountBalanceWalletIcon sx={{ color: WW.accent, fontSize: 52 }} />
-          <Typography variant="h3" fontWeight={900} sx={{ color: WW.white, letterSpacing: -1 }}>
-            WalletWise
+          <AccountBalanceWalletIcon sx={{ color: CC.accent, fontSize: 52 }} />
+          <Typography variant="h3" fontWeight={900} sx={{ color: CC.white, letterSpacing: -1 }}>
+            CashCompass
           </Typography>
         </Box>
 
-        <Box sx={{ width: 60, height: 3, bgcolor: WW.accent, borderRadius: 2, mb: 3 }} />
+        <Box sx={{ width: 60, height: 3, bgcolor: CC.accent, borderRadius: 2, mb: 3 }} />
 
         <Typography variant="h6" sx={{ color: 'rgba(255,255,255,0.85)', textAlign: 'center', mb: 4, lineHeight: 1.6 }}>
           Your personal finance companion.<br />Smart. Simple. Insightful.
@@ -86,7 +86,7 @@ export default function Login({ onLogin }) {
         <Stack spacing={1.5} sx={{ width: '100%', maxWidth: 300 }}>
           {FEATURES.map((f) => (
             <Stack key={f} direction="row" spacing={1.5} alignItems="center">
-              <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: WW.accent, flexShrink: 0 }} />
+              <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: CC.accent, flexShrink: 0 }} />
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)' }}>{f}</Typography>
             </Stack>
           ))}
@@ -106,17 +106,17 @@ export default function Login({ onLogin }) {
 
           {/* Mobile logo */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1, mb: 3 }}>
-            <AccountBalanceWalletIcon sx={{ color: WW.teal, fontSize: 30 }} />
-            <Typography variant="h6" fontWeight={800} color={WW.teal}>WalletWise</Typography>
+            <AccountBalanceWalletIcon sx={{ color: CC.primary, fontSize: 30 }} />
+            <Typography variant="h6" fontWeight={800} color={CC.primary}>CashCompass</Typography>
           </Box>
 
           {/* Header */}
           <Stack direction="row" spacing={1.5} alignItems="center" mb={1}>
-            <Box sx={{ p: 1, bgcolor: WW.tealLight, borderRadius: 2 }}>
-              <LockIcon sx={{ color: WW.teal, fontSize: 22 }} />
+            <Box sx={{ p: 1, bgcolor: CC.primaryLight, borderRadius: 2 }}>
+              <LockIcon sx={{ color: CC.primary, fontSize: 22 }} />
             </Box>
             <Box>
-              <Typography variant="h5" fontWeight={800} color={WW.teal}>Sign In</Typography>
+              <Typography variant="h5" fontWeight={800} color={CC.primary}>Sign In</Typography>
               <Typography variant="caption" color="text.secondary">Access your finance dashboard</Typography>
             </Box>
           </Stack>
@@ -130,17 +130,17 @@ export default function Login({ onLogin }) {
               <TextField
                 name="username" label="Username" fullWidth size="small"
                 value={form.username} onChange={handleChange} required autoFocus
-                slotProps={{ input: { startAdornment: <PersonIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <PersonIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <TextField
                 name="password" label="Password" type="password" fullWidth size="small"
                 value={form.password} onChange={handleChange} required
-                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: WW.teal, fontSize: 20 }} /> } }}
-                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: WW.teal } }}
+                slotProps={{ input: { startAdornment: <LockIcon sx={{ mr: 1, color: CC.primary, fontSize: 20 }} /> } }}
+                sx={{ '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: CC.primary } }}
               />
               <Button type="submit" variant="contained" fullWidth size="large" disabled={loading}
-                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none', bgcolor: WW.teal, '&:hover': { bgcolor: WW.tealDark } }}>
+                sx={{ borderRadius: 2, fontWeight: 700, textTransform: 'none', bgcolor: CC.primary, '&:hover': { bgcolor: CC.primaryDark } }}>
                 {loading ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Sign In'}
               </Button>
             </Stack>
@@ -149,7 +149,7 @@ export default function Login({ onLogin }) {
           <Typography variant="body2" textAlign="center" mt={3} color="text.secondary">
             No account?{' '}
             <RouterLink to="/register"
-              style={{ color: WW.teal, fontWeight: 700, textDecoration: 'none' }}>
+              style={{ color: CC.primary, fontWeight: 700, textDecoration: 'none' }}>
               Register here
             </RouterLink>
           </Typography>

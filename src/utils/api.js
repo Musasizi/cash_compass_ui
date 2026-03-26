@@ -1,5 +1,5 @@
 /**
- * utils/api.js – WalletWise Centralised API Client
+ * utils/api.js – CashCompass Centralised API Client
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * WHY CENTRALISE API CALLS?

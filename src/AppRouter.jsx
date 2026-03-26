@@ -1,5 +1,5 @@
 /**
- * AppRouter.jsx – WalletWise Application Routing
+ * AppRouter.jsx – CashCompass Application Routing
  */
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';

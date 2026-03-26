@@ -1,8 +1,8 @@
-# WalletWise UI — Frontend
+# CashCompass UI — Frontend
 
 > **Teaching Project** | React 19 · Vite · Material UI v7 · ApexCharts · React Router v7
 >
-> This is the frontend for the **WalletWise Personal Finance Tracker**.
+> This is the frontend for the **CashCompass Personal Finance Tracker**.
 > It is built to be read and understood — every folder has a single clear
 > purpose, and every component is commented to explain the React patterns used.
 
@@ -57,7 +57,7 @@
 ## Project Structure
 
 ```
-walletwise_ui/
+cashcompass_ui/
 │
 ├── index.html              ← The single HTML file Vite serves (SPA entry point)
 ├── vite.config.js          ← Vite configuration (dev proxy settings live here)
@@ -103,7 +103,7 @@ walletwise_ui/
 |------|---------|----------|
 | Node.js | v18 or higher | https://nodejs.org |
 | npm | comes with Node.js | — |
-| The WalletWise API | running on port 3000 | see `walletwise_api/readme.md` |
+| The CashCompass API | running on port 3000 | see `cashcompass_api/readme.md` |
 
 Check your version:
 ```bash
@@ -118,7 +118,7 @@ npm --version    # 9 or higher
 ### 1 — Navigate into the UI folder
 
 ```bash
-cd walletwise/walletwise_ui
+cd cashcompass/cashcompass_ui
 ```
 
 ### 2 — Install dependencies
@@ -172,7 +172,7 @@ Password:  password123
 ## Pages & Features
 
 ### Login & Register
-- Split-screen layout: WalletWise teal branding on the left, form on the right
+- Split-screen layout: CashCompass teal branding on the left, form on the right
 - On successful login the JWT token is stored in React state and passed to all protected pages
 - On successful registration, redirects automatically to Login
 
@@ -351,10 +351,10 @@ Instead of separate CSS files, MUI components accept an `sx` prop for inline
 styling that has access to the theme:
 
 ```jsx
-// Regular CSS:  color: #0D6E6E; font-weight: 800;
+// Regular CSS:  color: #1E3A8A; font-weight: 800;
 // With sx prop:
-<Typography sx={{ color: '#0D6E6E', fontWeight: 800 }}>
-  WalletWise
+<Typography sx={{ color: '#1E3A8A', fontWeight: 800 }}>
+  CashCompass
 </Typography>
 
 // Responsive values work too:
@@ -399,7 +399,7 @@ To add a new endpoint:
 
 ## Available Scripts
 
-Run these from inside the `walletwise_ui/` folder:
+Run these from inside the `cashcompass_ui/` folder:
 
 | Command | Description |
 |---------|-------------|
@@ -415,7 +415,7 @@ Run these from inside the `walletwise_ui/` folder:
 | Error | Cause | Fix |
 |-------|-------|-----|
 | Blank page / 404 on refresh | React Router needs server config | Use `npm run dev`; for production configure the server to serve `index.html` for all routes |
-| `Failed to fetch` in browser console | Backend not running | Start the API: `cd walletwise_api && npm start` |
+| `Failed to fetch` in browser console | Backend not running | Start the API: `cd cashcompass_api && npm start` |
 | `401 Unauthorized` API responses | Token missing or expired | Log out and log in again |
 | Charts not rendering | ApexCharts needs numeric data | Check that `series` is an array of numbers, not strings |
 | `EADDRINUSE` on port 5173 | Another Vite instance is running | Kill it: `lsof -ti:5173 \| xargs kill` |

@@ -1,10 +1,10 @@
 /**
- * layouts/ModernLayout.jsx — WalletWise App Shell
+ * layouts/ModernLayout.jsx — CashCompass App Shell
  *
  * STRUCTURE:
  *   ┌──────────────────────────────────────────────┐
  *   │  Sidebar (permanent, 240 px, deep teal)      │
- *   │    WalletWise brand                          │
+ *   │    CashCompass brand                          │
  *   │    Navigation: Dashboard · Income · Expense  │
  *   │                Balance · Reports · Users     │
  *   │    User avatar + logout at bottom            │
@@ -33,10 +33,10 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 // ── Constants ─────────────────────────────────────────────────────────────────
 const DRAWER_WIDTH = 240;
 
-const WW = {
-  teal: '#0D6E6E',
-  tealDark: '#094F4F',
-  accent: '#F0A500',
+const CC = {
+  primary: '#1E3A8A',
+  primaryDark: '#094F4F',
+  accent: '#10B981',
   accentLight: '#FFF3CD',
   white: '#FFFFFF',
   offWhite: '#F4F6F8',
@@ -60,7 +60,7 @@ const PAGE_LABELS = {
   '/users': 'Users',
 };
 
-const AVATAR_COLORS = [WW.teal, '#7B3F00', '#1A4A7B', '#1A5C2E', '#4A1A7B'];
+const AVATAR_COLORS = [CC.primary, '#7B3F00', '#1A4A7B', '#1A5C2E', '#4A1A7B'];
 const avatarBg = (name = '') =>
   AVATAR_COLORS[(name.codePointAt(0) ?? 0) % AVATAR_COLORS.length];
 
@@ -80,15 +80,15 @@ export default function ModernLayout({ children, user, onLogout }) {
 
   // ── Sidebar contents ────────────────────────────────────────────────────────
   const drawer = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: WW.teal, color: WW.white }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: CC.primary, color: CC.white }}>
 
       {/* Brand header */}
       <Box sx={{ px: 2.5, pt: 3, pb: 2 }}>
         <Stack direction="row" alignItems="center" spacing={1.5} mb={0.5}>
-          <AccountBalanceWalletIcon sx={{ fontSize: 32, color: WW.accent }} />
+          <AccountBalanceWalletIcon sx={{ fontSize: 32, color: CC.accent }} />
           <Box>
-            <Typography variant="subtitle1" sx={{ color: WW.white, fontWeight: 800, lineHeight: 1.1, letterSpacing: 0.5 }}>
-              WalletWise
+            <Typography variant="subtitle1" sx={{ color: CC.white, fontWeight: 800, lineHeight: 1.1, letterSpacing: 0.5 }}>
+              CashCompass
             </Typography>
             <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.55)', fontSize: 10, letterSpacing: 0.6, lineHeight: 1, display: 'block' }}>
               PERSONAL FINANCE TRACKER
@@ -112,10 +112,10 @@ export default function ModernLayout({ children, user, onLogout }) {
                 mb: 0.5,
                 px: 1.5,
                 py: 1,
-                color: active ? WW.accent : 'rgba(255,255,255,0.75)',
+                color: active ? CC.accent : 'rgba(255,255,255,0.75)',
                 bgcolor: active ? 'rgba(240,165,0,0.15)' : 'transparent',
-                borderLeft: active ? `3px solid ${WW.accent}` : '3px solid transparent',
-                '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', color: WW.white },
+                borderLeft: active ? `3px solid ${CC.accent}` : '3px solid transparent',
+                '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', color: CC.white },
                 transition: 'all 0.18s ease',
               }}
             >
@@ -137,11 +137,11 @@ export default function ModernLayout({ children, user, onLogout }) {
       {/* User info + logout */}
       <Box sx={{ px: 2, py: 2 }}>
         <Stack direction="row" alignItems="center" spacing={1.5}>
-          <Avatar sx={{ width: 36, height: 36, bgcolor: avatarBg(username), border: `2px solid ${WW.accent}`, fontWeight: 700, fontSize: 15 }}>
+          <Avatar sx={{ width: 36, height: 36, bgcolor: avatarBg(username), border: `2px solid ${CC.accent}`, fontWeight: 700, fontSize: 15 }}>
             {username[0]?.toUpperCase()}
           </Avatar>
           <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
-            <Typography variant="body2" sx={{ color: WW.white, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <Typography variant="body2" sx={{ color: CC.white, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {username}
             </Typography>
             <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.45)', fontSize: 10 }}>
@@ -149,7 +149,7 @@ export default function ModernLayout({ children, user, onLogout }) {
             </Typography>
           </Box>
           <Tooltip title="Logout">
-            <IconButton size="small" onClick={handleLogout} sx={{ color: 'rgba(255,255,255,0.55)', '&:hover': { color: WW.accent } }}>
+            <IconButton size="small" onClick={handleLogout} sx={{ color: 'rgba(255,255,255,0.55)', '&:hover': { color: CC.accent } }}>
               <LogoutIcon fontSize="small" />
             </IconButton>
           </Tooltip>
@@ -160,7 +160,7 @@ export default function ModernLayout({ children, user, onLogout }) {
 
   // ── Full layout shell ───────────────────────────────────────────────────────
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: WW.offWhite }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: CC.offWhite }}>
 
       {/* Permanent sidebar */}
       <Drawer
@@ -178,13 +178,13 @@ export default function ModernLayout({ children, user, onLogout }) {
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
         {/* Top AppBar */}
-        <AppBar position="static" elevation={0} sx={{ bgcolor: WW.white, borderBottom: `3px solid ${WW.teal}`, color: 'text.primary' }}>
+        <AppBar position="static" elevation={0} sx={{ bgcolor: CC.white, borderBottom: `3px solid ${CC.primary}`, color: 'text.primary' }}>
           <Toolbar sx={{ minHeight: 56 }}>
-            <Breadcrumbs separator={<NavigateNextIcon fontSize="small" sx={{ color: WW.teal }} />} sx={{ flexGrow: 1 }}>
-              <Link underline="hover" onClick={() => navigate('/dashboard')} sx={{ cursor: 'pointer', fontSize: 13, color: WW.teal, fontWeight: 600 }}>
+            <Breadcrumbs separator={<NavigateNextIcon fontSize="small" sx={{ color: CC.primary }} />} sx={{ flexGrow: 1 }}>
+              <Link underline="hover" onClick={() => navigate('/dashboard')} sx={{ cursor: 'pointer', fontSize: 13, color: CC.primary, fontWeight: 600 }}>
                 Home
               </Link>
-              <Typography sx={{ fontSize: 13, fontWeight: 700, color: WW.teal }}>
+              <Typography sx={{ fontSize: 13, fontWeight: 700, color: CC.primary }}>
                 {pageLabel}
               </Typography>
             </Breadcrumbs>
@@ -194,7 +194,7 @@ export default function ModernLayout({ children, user, onLogout }) {
               label={username}
               size="small"
               variant="outlined"
-              sx={{ borderColor: WW.teal, color: WW.teal, fontWeight: 600, fontSize: 12 }}
+              sx={{ borderColor: CC.primary, color: CC.primary, fontWeight: 600, fontSize: 12 }}
             />
           </Toolbar>
         </AppBar>
@@ -205,8 +205,8 @@ export default function ModernLayout({ children, user, onLogout }) {
         </Box>
 
         {/* Footer */}
-        <Box sx={{ textAlign: 'center', py: 1.5, borderTop: '1px solid rgba(13,110,110,0.12)', color: WW.teal, fontSize: 11, fontWeight: 500, opacity: 0.7 }}>
-          © {new Date().getFullYear()} WalletWise — Personal Finance Tracker
+        <Box sx={{ textAlign: 'center', py: 1.5, borderTop: '1px solid rgba(13,110,110,0.12)', color: CC.primary, fontSize: 11, fontWeight: 500, opacity: 0.7 }}>
+          © {new Date().getFullYear()} CashCompass — Personal Finance Tracker
         </Box>
       </Box>
     </Box>
