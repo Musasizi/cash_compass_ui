@@ -18,7 +18,7 @@ import ReactApexChart from 'react-apexcharts';
 import { getDashboard } from '../utils/api';
 
 // ── Palette ───────────────────────────────────────────────────────────────────
-const CC = { primary: '#1E3A8A', green: '#2E7D32', red: '#C62828' };
+const CC = { primary: '#3B82F6', green: '#10B981', red: '#EF4444' };
 
 const fmt = (n) =>
   Number(n ?? 0).toLocaleString('en-UG', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -71,13 +71,15 @@ export default function Reports({ token }) {
   });
 
   const barOptions = {
-    chart:   { type: 'bar', toolbar: { show: false } },
+    theme:   { mode: 'dark' },
+    chart:   { type: 'bar', background: 'transparent', toolbar: { show: false } },
     colors:  [CC.green, CC.red],
-    xaxis:   { categories: barCategories },
-    yaxis:   { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K` } },
-    tooltip: { y: { formatter: (v) => `UGX ${fmt(v)}` } },
+    xaxis:   { categories: barCategories, labels: { style: { colors: '#94A3B8' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis:   { labels: { formatter: (v) => `${(v / 1000).toFixed(0)}K`, style: { colors: '#94A3B8' } } },
+    grid:    { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
+    tooltip: { theme: 'dark', y: { formatter: (v) => `UGX ${fmt(v)}` } },
     dataLabels: { enabled: false },
-    legend:  { position: 'top' },
+    legend:  { position: 'top', labels: { colors: '#94A3B8' } },
     plotOptions: { bar: { borderRadius: 4, columnWidth: '55%' } },
   };
 
@@ -88,13 +90,15 @@ export default function Reports({ token }) {
   const eLabels = expenseBreakdown.map((r) => r.name ?? r.type_name ?? '?');
 
   const donutOpts = (labels, colors) => ({
-    chart:      { type: 'donut', toolbar: { show: false } },
+    theme:      { mode: 'dark' },
+    chart:      { type: 'donut', background: 'transparent', toolbar: { show: false } },
     labels,
     colors,
-    legend:     { position: 'bottom', fontSize: '12px' },
+    stroke:     { show: false },
+    legend:     { position: 'bottom', fontSize: '12px', labels: { colors: '#94A3B8' } },
     dataLabels: { enabled: true, formatter: (v) => `${v.toFixed(1)}%` },
-    plotOptions: { pie: { donut: { size: '62%' } } },
-    tooltip:    { y: { formatter: (v) => `UGX ${fmt(v)}` } },
+    plotOptions: { pie: { donut: { size: '65%' } } },
+    tooltip:    { theme: 'dark', y: { formatter: (v) => `UGX ${fmt(v)}` } },
   });
 
   return (
@@ -182,7 +186,7 @@ export default function Reports({ token }) {
               <CardContent>
                 {iSeries.length > 0 ? (
                   <ReactApexChart type="donut" series={iSeries}
-                    options={donutOpts(iLabels, ['#1E3A8A', '#2E7D32', '#1A4A7B', '#6A1B9A', '#E65100'])}
+                    options={donutOpts(iLabels, ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444'])}
                     height={260} />
                 ) : (
                   <Typography variant="body2" color="text.secondary" textAlign="center" py={5}>No data</Typography>
@@ -198,7 +202,7 @@ export default function Reports({ token }) {
               <CardContent>
                 {eSeries.length > 0 ? (
                   <ReactApexChart type="donut" series={eSeries}
-                    options={donutOpts(eLabels, ['#C62828', '#10B981', '#4A148C', '#880E4F', '#BF360C'])}
+                    options={donutOpts(eLabels, ['#EF4444', '#F43F5E', '#D946EF', '#8B5CF6', '#3B82F6'])}
                     height={260} />
                 ) : (
                   <Typography variant="body2" color="text.secondary" textAlign="center" py={5}>No data</Typography>
