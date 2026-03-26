@@ -26,7 +26,7 @@ import { useToast } from '../hooks/useToast';
 import Toast from '../components/Toast';
 
 // ── Palette ───────────────────────────────────────────────────────────────────
-const CC = { primary: '#1E3A8A', green: '#2E7D32', red: '#C62828' };
+const CC = { primary: '#3B82F6', green: '#10B981', red: '#EF4444' };
 
 const fmt = (n) =>
     Number(n ?? 0).toLocaleString('en-UG', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -136,7 +136,7 @@ export default function Income({ token }) {
                     <Typography variant="body2" color="text.secondary">Track all income sources</Typography>
                 </Box>
                 <Button variant="contained" startIcon={<AddIcon />} onClick={openCreate}
-                    sx={{ bgcolor: CC.primary, '&:hover': { bgcolor: '#094F4F' }, borderRadius: 2, textTransform: 'none', fontWeight: 700 }}>
+                    sx={{ bgcolor: CC.primary, '&:hover': { bgcolor: '#2563EB' }, borderRadius: 2, textTransform: 'none', fontWeight: 700 }}>
                     Add Income
                 </Button>
             </Stack>
@@ -195,7 +195,7 @@ export default function Income({ token }) {
                                     <TableCell>
                                         <Chip label={typeName(row.income_type_id)} size="small"
                                             icon={<ArrowUpwardIcon sx={{ fontSize: 12 }} />}
-                                            sx={{ bgcolor: '#E8F5E9', color: CC.green, fontWeight: 700, fontSize: 11 }} />
+                                            sx={{ bgcolor: 'rgba(16, 185, 129, 0.15)', color: CC.green, fontWeight: 700, fontSize: 11 }} />
                                     </TableCell>
                                     <TableCell sx={{ fontWeight: 700 }}>UGX {fmt(row.amount)}</TableCell>
                                     <TableCell>
@@ -241,7 +241,7 @@ export default function Income({ token }) {
                 <DialogActions sx={{ px: 3, pb: 2 }}>
                     <Button onClick={() => setOpen(false)} sx={{ textTransform: 'none' }}>Cancel</Button>
                     <Button variant="contained" onClick={handleSave} disabled={saving}
-                        sx={{ bgcolor: CC.primary, '&:hover': { bgcolor: '#094F4F' }, textTransform: 'none', fontWeight: 700 }}>
+                        sx={{ bgcolor: CC.primary, '&:hover': { bgcolor: '#2563EB' }, textTransform: 'none', fontWeight: 700 }}>
                         {saving ? <CircularProgress size={18} color="inherit" /> : getBtnLabel(editing)}
                     </Button>
                 </DialogActions>
