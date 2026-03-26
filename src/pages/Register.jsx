@@ -54,7 +54,7 @@ export default function Register() {
     }
     setLoading(true);
     try {
-      await register(form.username, form.email, form.password);
+      await register(form.username, form.password, form.email);
       showToast('Account created! Redirecting to login…', 'success', 'Welcome to CashCompass!');
       setTimeout(() => navigate('/login'), 1800);
     } catch (err) {

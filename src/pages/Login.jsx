@@ -34,7 +34,7 @@ const FEATURES = [
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function Login({ onLogin }) {
+export default function Login({ setToken }) {
   const navigate = useNavigate();
   const [form,    setForm]    = useState({ username: '', password: '' });
   const [error,   setError]   = useState('');
@@ -46,8 +46,10 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setError(''); setLoading(true);
     try {
-      const res = await login(form.username, form.password);
-      onLogin(res.user ?? res.data?.user, res.token ?? res.data?.token);
+      const res = await login({ username: form.username, password: form.password });
+      const tk = res.token ?? res.data?.token;
+      localStorage.setItem('token', tk);
+      setToken(tk);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Invalid credentials. Please try again.');
@@ -160,4 +162,4 @@ export default function Login({ onLogin }) {
     </Box>
   );
 }
-Login.propTypes = { onLogin: PropTypes.func.isRequired };
+Login.propTypes = { setToken: PropTypes.func.isRequired };
